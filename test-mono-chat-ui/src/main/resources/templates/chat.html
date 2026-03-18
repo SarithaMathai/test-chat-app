@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mono Chat</title>
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-header">
+        <h1>Test Mono Chat</h1>
+        <div class="username-section">
+            <input type="text" id="username" placeholder="Your name" maxlength="30">
+            <button id="connect-btn" onclick="connect()">Connect</button>
+        </div>
+    </div>
+
+    <div id="chat-area" class="chat-area">
+        <div id="messages" class="messages"></div>
+    </div>
+
+    <div class="chat-input-section">
+        <input type="text" id="message-input" placeholder="Type a message..." disabled maxlength="500">
+        <button id="send-btn" onclick="sendMessage()" disabled>Send</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+<script th:src="@{/js/chat.js}"></script>
+</body>
+</html>
