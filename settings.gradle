@@ -1,0 +1,2 @@
+rootProject.name = 'test-mono-chat'
+include 'test-mono-chat-api', 'test-mono-chat-ui'
