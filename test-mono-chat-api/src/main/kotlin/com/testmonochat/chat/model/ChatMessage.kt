@@ -1,4 +1,4 @@
-package com.testmonochat.api.model
+package com.testmonochat.chat.model
 
 import java.time.LocalDateTime
 import java.util.UUID

@@ -13,9 +13,12 @@ function connect() {
 
     const socket = new SockJS(WS_ENDPOINT);
     stompClient = Stomp.over(socket);
-    stompClient.debug = null;
+    stompClient.debug = function (message) {
+        console.log('[STOMP]', message);
+    };
 
     stompClient.connect({}, function () {
+        console.log('[CHAT] Connected to WebSocket endpoint:', WS_ENDPOINT);
         connected = true;
         document.getElementById('message-input').disabled = false;
         document.getElementById('send-btn').disabled = false;
@@ -24,6 +27,7 @@ function connect() {
 
         stompClient.subscribe('/topic/messages', function (message) {
             const chatMessage = JSON.parse(message.body);
+            console.log('[CHAT] Received message from /topic/messages:', chatMessage);
             appendMessage(chatMessage);
         });
 
@@ -43,6 +47,10 @@ function sendMessage() {
 
     if (!content) return;
 
+    console.log('[CHAT] Sending message to /app/chat.send:', {
+        sender: username,
+        content: content
+    });
     stompClient.send('/app/chat.send', {}, JSON.stringify({
         sender: username,
         content: content
@@ -52,9 +60,11 @@ function sendMessage() {
 }
 
 function loadHistory() {
+    console.log('[CHAT] Loading history from:', API_BASE + '/api/chat/messages');
     fetch(API_BASE + '/api/chat/messages')
         .then(function (response) { return response.json(); })
         .then(function (messages) {
+            console.log('[CHAT] Loaded history:', messages);
             const container = document.getElementById('messages');
             container.innerHTML = '';
             messages.forEach(function (msg) { appendMessage(msg); });

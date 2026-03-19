@@ -1,4 +1,4 @@
-package com.testmonochat.api.config
+package com.testmonochat.chat.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry

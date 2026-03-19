@@ -4,3 +4,22 @@ server:
 spring:
   application:
     name: test-mono-chat-api
+
+# External service configuration — override via environment variables
+tools:
+  graphql:
+    url: ${GRAPHQL_URL:http://localhost:8080/graphql}
+  think-tank:
+    model-garden:
+      url: ${MODEL_GARDEN_URL:http://localhost:8080/gen_ai_model_requests/v1/chat/completions}
+    agent-invoke:
+      url: ${AGENT_INVOKE_URL:http://localhost:8080/agent/invoke}
+  api-key: ${API_KEY:}
+  tenant-id: ${TENANT_ID:}
+
+logging:
+  level:
+    root: INFO
+    com.testmonochat.chat: DEBUG
+    com.testmonochat.common.service: DEBUG
+    com.testmonochat.tools: DEBUG

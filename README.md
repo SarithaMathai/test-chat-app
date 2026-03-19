@@ -65,3 +65,5 @@ The API exposes a STOMP-over-SockJS endpoint at `ws://localhost:8080/ws`.
   "content": "Hello via WebSocket!"
 }
 ```
+
+
